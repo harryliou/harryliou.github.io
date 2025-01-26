@@ -3,26 +3,28 @@
 <head>
   <meta charset="utf-8">
   <title>計數器</title>
-
   <style>
-    /*
-      告訴瀏覽器我們支援 light & dark 模式，
-      使瀏覽器能依偏好自動調整(含表單背景、文字顏色、捲軸樣式等)。
-    */
-    :root {
-      color-scheme: light dark;
-    }
-
-    /* 
-      使用者代理樣式(UA default)通常會給 body 白底 & 黑字，
-      這裡改用 Canvas / CanvasText，可在深色模式時自動轉深色背景/白字
-      (若瀏覽器支援)。
-    */
+    /* 不指定任何固定背景；改用 transparent 使其透出 Notion 背景 */
     body {
       margin: 0;
       text-align: center;
-      background-color: transparent;     /* 由瀏覽器自動決定背景 */
-      color: CanvasText;           /* 由瀏覽器自動決定文字色 */
+      background-color: transparent;
+      /* 指定一個預設文字顏色(fallback)；若瀏覽器不支援 prefers-color-scheme */
+      color: #000; /* 預設為黑字 */
+    }
+
+    /* 瀏覽器/系統為「深色模式」時，讓文字改成白色 */
+    @media (prefers-color-scheme: dark) {
+      body {
+        color: #fff;
+      }
+    }
+
+    /* 瀏覽器/系統為「淺色模式」時，讓文字改成黑色 (可省略，預設已是黑色) */
+    @media (prefers-color-scheme: light) {
+      body {
+        color: #000;
+      }
     }
 
     .counter-container {
@@ -30,7 +32,6 @@
       align-items: center;
       line-height: 1;
     }
-
     .counter-table {
       margin-left: 5px;
     }
