@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   <title>計數器範例</title>
-  <style>
-    /* 針對淺色模式 (Light Mode) */
-    @media (prefers-color-scheme: light) {
-      body {
-        background-color: #fff; /* 白底 */
-        color: #000;           /* 黑字 */
-      }
-    }
 
-    /* 針對深色模式 (Dark Mode) */
-    @media (prefers-color-scheme: dark) {
-      body {
-        background-color: #333; /* 深灰底 */
-        color: #fff;           /* 白字 */
-      }
+  <style>
+    /*
+      告訴瀏覽器我們支援 light & dark 模式，
+      使瀏覽器能依偏好自動調整(含表單背景、文字顏色、捲軸樣式等)。
+    */
+    :root {
+      color-scheme: light dark;
     }
 
     /* 
-      讓容器使用 Inline-Flex 並在垂直方向置中 
-      (與計數器圖片垂直對齊)
+      使用者代理樣式(UA default)通常會給 body 白底 & 黑字，
+      這裡改用 Canvas / CanvasText，可在深色模式時自動轉深色背景/白字
+      (若瀏覽器支援)。
     */
+    body {
+      margin: 0;
+      text-align: center;
+      background-color: Canvas;     /* 由瀏覽器自動決定背景 */
+      color: CanvasText;           /* 由瀏覽器自動決定文字色 */
+    }
+
     .counter-container {
       display: inline-flex;
       align-items: center;
       line-height: 1;
     }
 
-    /* 調整表格與圖片的預設行內樣式，避免垂直置中偏移 */
     .counter-table {
       margin-left: 5px;
     }
@@ -43,7 +43,7 @@
     }
   </style>
 </head>
-<body style="margin:0; text-align:center;">
+<body>
   <div class="counter-container">
     <span>網站瀏覽人數:</span>
     <table border="0" cellspacing="0" cellpadding="0" class="counter-table">
