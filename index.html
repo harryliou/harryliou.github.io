@@ -1,36 +1,29 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   <title>計數器</title>
   <style>
-    /* 不指定任何固定背景；改用 transparent 使其透出 Notion 背景 */
-    body {
-      margin: 0;
-      text-align: center;
-      background-color: transparent;
-      /* 指定一個預設文字顏色(fallback)；若瀏覽器不支援 prefers-color-scheme */
-      color: #000; /* 預設為黑字 */
-    }
-
-    /* 瀏覽器/系統為「深色模式」時，讓文字改成白色 */
-    @media (prefers-color-scheme: dark) {
+    /* 針對淺色模式 (Light Mode) */
+    @media (prefers-color-scheme: light) {
       body {
-        color: #fff;
+        background-color: #fff; /* 白底 */
+        color: #000;           /* 黑字 */
       }
     }
 
-    /* 瀏覽器/系統為「淺色模式」時，讓文字改成黑色 (可省略，預設已是黑色) */
-    @media (prefers-color-scheme: light) {
+    /* 針對深色模式 (Dark Mode) */
+    @media (prefers-color-scheme: dark) {
       body {
-        color: #000;
+        background-color: rgb(25, 25, 25); /* 深色背景 */
+        color: #fff;                      /* 白字 */
       }
     }
 
     .counter-container {
       display: inline-flex;
       align-items: center;
-      line-height: 1;
+      line-height: 1; /* 避免文字預設行高造成的偏移 */
     }
     .counter-table {
       margin-left: 5px;
@@ -44,7 +37,7 @@
     }
   </style>
 </head>
-<body>
+<body style="margin:0; text-align:center;">
   <div class="counter-container">
     <span>網站瀏覽人數:</span>
     <table border="0" cellspacing="0" cellpadding="0" class="counter-table">
